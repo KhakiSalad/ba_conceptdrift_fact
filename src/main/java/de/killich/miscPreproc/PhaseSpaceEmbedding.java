@@ -5,14 +5,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import stream.Data;
 import stream.ProcessContext;
+import stream.annotations.Parameter;
 
 import java.util.ArrayList;
-
+/**
+ * Processor that implements Phase Space Embedding for m=2. Estimators for mean vector and variance matrix are calculated once with the first values of the stream.
+ */
 public class PhaseSpaceEmbedding extends stream.AbstractProcessor{
     private double prev = Double.NEGATIVE_INFINITY;
     private static final Logger log = LoggerFactory.getLogger(PhaseSpaceEmbedding.class);
     private ArrayList<RealMatrix> window;
-    private String inputKey ="@value";
+    private String inputKey ="value";
     private int windowLength = 100;
     private RealMatrix mean;
     private RealMatrix covInv;
@@ -80,6 +83,11 @@ public class PhaseSpaceEmbedding extends stream.AbstractProcessor{
         return windowLength;
     }
 
+    /**
+     * Sets Length of the window used for estimating the mean vector and the variance matrix
+     * @param windowLength length of window used for estimators.
+     */
+    @Parameter
     public void setWindowLength(int windowLength){
         this.windowLength = windowLength;
     }

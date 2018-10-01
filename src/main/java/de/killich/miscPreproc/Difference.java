@@ -7,7 +7,7 @@ import stream.Data;
 
 public class Difference extends AbstractProcessor{
     private static final Logger log = LoggerFactory.getLogger(Difference.class);
-    private String inputKey = "@value";
+    private String inputKey = "value";
     private String outputKey = null;
     private double lastValue = Double.NEGATIVE_INFINITY;
 

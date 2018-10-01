@@ -4,10 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import stream.Data;
 import stream.ProcessContext;
+import stream.annotations.Parameter;
 import stream.drift.DriftDetectionService;
 
 import java.util.ArrayList;
-
+/**
+ * Processor that normalizes the value for the given key. The first values of the stream are used for the estimation of the mean and variance.
+ * The number of values used ist determined by <code>windowLength</code>. This process can be repeated after a concept drift was detected.
+ *
+ */
 public class FixNorm extends stream.AbstractProcessor{
     private ArrayList<Double> window;
     private ArrayList<Double> warningWindow;
@@ -69,18 +74,22 @@ public class FixNorm extends stream.AbstractProcessor{
         return null;
     }
 
+    @Parameter
     public void setWindowLength(int windowLength){
         this.windowLength = windowLength;
     }
 
+    @Parameter
     public void setInputKey(String inputKey){
         this.inputKey = inputKey;
     }
 
+    @Parameter
     public void setDriftDetectionService(DriftDetectionService driftDetectionService){
         this.driftDetectionService = driftDetectionService;
     }
 
+    @Parameter
     public void setOutputKey(String outputKey){
         this.outputKey = outputKey;
     }

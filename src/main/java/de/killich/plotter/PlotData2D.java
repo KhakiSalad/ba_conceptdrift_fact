@@ -6,6 +6,9 @@ import stream.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @see de.killich.plotter.Visualizer
+ */
 public class PlotData2D{
     private final List<String> labels;
     private final List<Vector2D> data;

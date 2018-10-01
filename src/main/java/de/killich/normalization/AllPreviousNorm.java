@@ -4,8 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import stream.AbstractProcessor;
 import stream.Data;
+import stream.annotations.Parameter;
 import stream.drift.DriftDetectionService;
 
+/**
+ * Processor that normalizes the value for the given key. All previous values are used for the estimation of the mean and variance.
+ *
+ */
 public class AllPreviousNorm extends AbstractProcessor{
     private double sum = 0;
     private double sumSq = 0;
@@ -58,14 +63,17 @@ public class AllPreviousNorm extends AbstractProcessor{
         return item;
     }
 
+    @Parameter
     public void setDriftDetectionService(DriftDetectionService driftDetectionService){
         this.driftDetectionService = driftDetectionService;
     }
 
+    @Parameter
     public void setKey(String key){
         this.key = key;
     }
 
+    @Parameter
     public void setOutput(String outputKey){
         this.outputKey = outputKey;
     }

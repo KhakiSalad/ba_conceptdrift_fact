@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 /**
- *
  * Only shows Data, for which change value is true. Allows to quickly find detected changes in streams.
  */
 public class ChangeFilter extends AbstractProcessor{

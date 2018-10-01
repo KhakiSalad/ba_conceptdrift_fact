@@ -6,6 +6,9 @@ import stream.AbstractProcessor;
 import stream.Data;
 import stream.annotations.Parameter;
 
+/**
+ * Processor that implements a simple SAX version. Data has to be normalised and processed with PAA according to SAX paper.
+ */
 public class SAXProcessor extends AbstractProcessor{
     private static final double[][] breakpoints = {
             {-0.43, 0.43},

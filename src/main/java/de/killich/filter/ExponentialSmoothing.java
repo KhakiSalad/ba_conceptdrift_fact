@@ -4,18 +4,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import stream.AbstractProcessor;
 import stream.Data;
+import stream.annotations.Parameter;
 
+/**
+ * Processor that implements exponential smoothing for an attribute of the data item.
+ */
 public class ExponentialSmoothing extends AbstractProcessor{
     private static final Logger log = LoggerFactory.getLogger(ExponentialSmoothing.class);
     private double lambda = 0.5;
-    private String inputKey = "@value";
-    private String outputKey = "@norm";
+    private String inputKey = "value";
+    private String outputKey = "norm";
     private double last = Double.NEGATIVE_INFINITY;
 
     public String getInputKey(){
         return inputKey;
     }
 
+    @Parameter
     public void setInputKey(String inputKey){
         this.inputKey = inputKey;
     }
@@ -24,6 +29,7 @@ public class ExponentialSmoothing extends AbstractProcessor{
         return outputKey;
     }
 
+    @Parameter
     public void setOutputKey(String outputKey){
         this.outputKey = outputKey;
     }

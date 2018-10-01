@@ -11,6 +11,9 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @see de.killich.plotter.Visualizer
+ */
 public class DataPlotter2D extends JFrame implements MouseMotionListener{
     private final PlotDataSupplier supplier;
     private static final Logger log = LoggerFactory.getLogger(DataPlotter2D.class);

@@ -5,14 +5,19 @@ import org.slf4j.LoggerFactory;
 import stream.AbstractProcessor;
 import stream.Data;
 import stream.ProcessContext;
+import stream.annotations.Parameter;
 
 import java.util.ArrayList;
-
+/**
+ * Processor that normalizes the value for the given key. A sliding window is used for the estimation of the mean and variance
+ * The number of values used ist determined by <code>windowLength</code>
+ *
+ */
 public class SlidingNorm extends AbstractProcessor{
     private int windowLength = 50;
     private ArrayList<Double> window;
     private String inputKey = "@value";
-    private String outpuKey = "@norm";
+    private String outputKey = "@norm";
     private double sum = 0;
     private double sqsum = 0;
     private static final Logger log = LoggerFactory.getLogger(SlidingNorm.class);
@@ -47,19 +52,22 @@ public class SlidingNorm extends AbstractProcessor{
         }
         stdv = stdv <= Double.MIN_VALUE ? 1 : stdv;
         stdv = Math.sqrt(stdv);
-        data.put(outpuKey, (val-mean)/stdv);
+        data.put(outputKey, (val-mean)/stdv);
         return data;
     }
 
+    @Parameter
     public void setWindowLength(int windowLength){
         this.windowLength = windowLength;
     }
 
+    @Parameter
     public void setInputKey(String inputKey){
         this.inputKey = inputKey;
     }
 
-    public void setOutpuKey(String outpuKey){
-        this.outpuKey = outpuKey;
+    @Parameter
+    public void setOutputKey(String outpuKey){
+        this.outputKey = outpuKey;
     }
 }

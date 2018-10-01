@@ -7,7 +7,9 @@ import stream.Data;
 import stream.ProcessContext;
 
 import java.util.LinkedList;
-
+/**
+ * Processor that implements moving average for an attribute of the data item.
+ */
 public class MovingAverage extends AbstractProcessor{
     private static final Logger log = LoggerFactory.getLogger(MovingAverage.class);
     private String inputKey = "@value";

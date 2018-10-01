@@ -9,6 +9,11 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Processor that reduces Values on a time basis. All data items in the given period are consumed and replaced by one item
+ * containing the mean of the values in the consumed items. Currently only one value is supported. The value used is
+ * specified by valueKey. The dates used for aggregation are given by dateKey.
+ */
 public class TimebasedReduction extends AbstractProcessor{
     private static Logger log = LoggerFactory.getLogger(TimebasedReduction.class);
     private Period aggregationPeriod = Period.ofMonths(1);

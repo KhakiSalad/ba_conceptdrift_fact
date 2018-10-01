@@ -4,16 +4,20 @@ import org.apache.commons.math3.distribution.ChiSquaredDistribution;
 import stream.AbstractProcessor;
 import stream.Data;
 import stream.ProcessContext;
+import stream.annotations.Parameter;
 
 import static java.lang.Math.abs;
-
+/**
+ * Processor that tests, whether values for valueKey are between the given Percentiles p and (1-p) of the Chi-Squared distribution with two degrees of freedom.
+ */
 public class InChi2DistributionPercentile extends AbstractProcessor{
-    private String inputKey = "@value";
+    private String inputKey = "value";
     private String outputKey= "@error";
     private double percentile= 0.9d;
     private double upper;
     private double lower;
 
+    @Parameter
     public String getInputKey(){
         return inputKey;
     }
@@ -26,6 +30,7 @@ public class InChi2DistributionPercentile extends AbstractProcessor{
         return outputKey;
     }
 
+    @Parameter
     public void setOutputKey(String outputKey){
         this.outputKey = outputKey;
     }
@@ -34,6 +39,11 @@ public class InChi2DistributionPercentile extends AbstractProcessor{
         return percentile;
     }
 
+    /**
+     * Sets percentile p used for bounds.
+     * @param percentile used for bounds
+     */
+    @Parameter
     public void setPercentile(double percentile){
         this.percentile = percentile;
     }
